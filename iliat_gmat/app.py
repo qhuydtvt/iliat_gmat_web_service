@@ -22,16 +22,16 @@ def hello_world():
     return "Iliat GMATers, don't panic!"
 
 
-@app.route('/question_collection')
-@app.route('/questions')
+@app.route('/api/question_collection')
+@app.route('/api/questions')
 def get_gmat_question_collection():
     questions = Question.objects
     version = Version.objects[0]
     question_collection = QuestionCollection(version=version.value, questions=questions)
     return remove_dollar_sign(str(question_collection.to_json()))
 
-@app.route('/question_pack_collection')
-@app.route('/question_packs')
+@app.route('/api/question_pack_collection')
+@app.route('/api/question_packs')
 def get_gmat_question_pack_collection():
     question_packs = QuestionPack.objects
     question_pack_collection = QuestionPackCollection(question_packs = question_packs)
