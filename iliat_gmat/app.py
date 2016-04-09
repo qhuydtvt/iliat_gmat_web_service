@@ -5,12 +5,16 @@ from versions import Version
 from question_packs import QuestionPack, QuestionPackCollection
 import mongoengine
 
-mongoengine.connect("gmat", host='103.1.209.92', port=27017)
+
+host = "ds011840.mlab.com"
+port = 11840
+db_name = "gmat"
+user_name = "admin"
+password = "admin"
+
+mongoengine.connect(db_name, host=host, port=port, username=user_name, password=password)
 
 app = Flask(__name__)
-
-QUESTION_COLLECTION_KEY = "question_collection"
-VERSION_KEY = "version"
 
 def remove_dollar_sign(s):
     OLD_OID = "$oid"
@@ -39,3 +43,4 @@ def get_gmat_question_pack_collection():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969)
+
