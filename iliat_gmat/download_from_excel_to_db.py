@@ -13,6 +13,12 @@ import re
 
 import xlrd
 
+host = "ds011840.mlab.com"
+port = 11840
+db_name = "gmat"
+user_name = "admin"
+password = "admin"
+
 #from questions import Question, QuestionCollection
 #import mongoengine
 
@@ -311,9 +317,9 @@ def load_question_pack1():
 
 if __name__ == "__main__":
 
-    db = mongoengine.connect("gmat",
-                         host='103.1.209.92',
-                         port=27017)
+    db = mongoengine.connect(db_name,
+        host=host, port=port, username=user_name, password=password)
+
     # print(load_data_from_excel("SC 1 - 10 - Commented.xlsx"))
     # i = 0
     # for data in load_data_from_excel("SC 1 - 10 - Commented.xlsx"):
@@ -327,5 +333,6 @@ if __name__ == "__main__":
     #             print(ans['note'])
     #     i += 1
     # pass
+    load_questions_for_pack1()
     load_question_pack1()
     db.close()
